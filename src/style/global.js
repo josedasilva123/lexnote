@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     :root{
         --Black: #0D0D0D;
         --Black2: #1F1F1F;
-        --White: #fff; 
+        --White: #ffffff; 
         --Blue: #1882FF;
         --Yellow: #D7FA00;
     }
@@ -40,11 +40,11 @@ export const GlobalStyle = createGlobalStyle`
         background: var(--Black);
     }
 
-`
+`;
 
 export const Container = styled.div`
-    max-width: 1300px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 1.5rem 1rem;
-`
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+`;
