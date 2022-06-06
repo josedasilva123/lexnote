@@ -5,7 +5,7 @@ import { ThemeLabel, ThemeParagraph, ThemeTitle } from "../../style/typography";
 import LoginImage from "../../assets/VectorLogin.svg";
 import { StyledLogin } from "./style";
 
-const Login = () => {
+const Login = ({setLogin}) => {
   return (
     <StyledLogin>
       <Container>
@@ -20,7 +20,7 @@ const Login = () => {
             </ThemeParagraph>
           </div>
           <div className="button-grid">
-            <ThemeButton buttonSize="lg" buttonStyle="solid">
+            <ThemeButton onClick={() => setLogin(true)} buttonSize="lg" buttonStyle="solid">
               Entrar
             </ThemeButton>
           </div>
