@@ -8,12 +8,7 @@ export const ThemeLabel = styled.label`
     color: var(${(props) => props.color});
 `
 
-export const ThemeInputLabel = styled.label`
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--White);
-`
+
 
 export const ThemeTitle = styled(BaseTitle)`
     font-family: 'Montserrat';
@@ -50,7 +45,8 @@ export const ThemeTitle = styled(BaseTitle)`
 export const ThemeParagraph = styled.p`
     font-family: 'Roboto';
     font-weight: 400;
-    font-size: 16px;
+    font-size: 16px; 
+    line-height: 1.4;
     color: var(--White);
     opacity: ${(props) => props.opacity};
 `
