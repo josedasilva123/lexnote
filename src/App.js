@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Routes, Route } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
@@ -8,7 +9,8 @@ function App() {
 
   const [notes, setNotes] = useState([]); 
   const [counter, setCounter] = useState(0);
-  
+
+
   function addNotes(note){
     const newNote = {
       id: counter,
@@ -26,11 +28,10 @@ function App() {
 
   return (
     <div className="App">
-      {login ? (
-        <Dashboard addNotes={addNotes} removeNotes={removeNotes} setLogin={setLogin} />
-      ) : (
-        <Login setLogin={setLogin} />
-      )}
+      <Routes>
+        <Route index element={<Login setLogin={setLogin} />} />
+        <Route path="/dashboard" element={<Dashboard addNotes={addNotes} removeNotes={removeNotes} setLogin={setLogin} />} />
+      </Routes>
       
     </div>
   );

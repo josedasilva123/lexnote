@@ -8,8 +8,6 @@ export const ThemeLabel = styled.label`
     color: var(${(props) => props.color});
 `
 
-
-
 export const ThemeTitle = styled(BaseTitle)`
     font-family: 'Montserrat';
     font-size: 28px;

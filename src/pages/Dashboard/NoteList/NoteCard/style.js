@@ -26,10 +26,7 @@ export const StyledNoteCard = styled.li`
         &:hover{
             opacity: 1;
         }
-
     }
-
-
 
     &:nth-child(even){
         border-left-color: var(--Yellow);

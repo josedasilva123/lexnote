@@ -7,6 +7,10 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    a{
+        
+    }
+
     :root{
         --Black: #0D0D0D;
         --Black2: #1F1F1F;

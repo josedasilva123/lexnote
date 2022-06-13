@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ThemeButton } from "../../style/buttons";
 import { Container } from "../../style/global";
 import { ThemeLabel, ThemeParagraph, ThemeTitle } from "../../style/typography";
 import LoginImage from "../../assets/VectorLogin.svg";
 import { StyledLogin } from "./style";
 
-const Login = ({setLogin}) => {
+const Login = ({ setLogin }) => {
   return (
     <StyledLogin>
       <Container>
@@ -20,9 +21,11 @@ const Login = ({setLogin}) => {
             </ThemeParagraph>
           </div>
           <div className="button-grid">
-            <ThemeButton onClick={() => setLogin(true)} buttonSize="lg" buttonStyle="solid">
-              Entrar
-            </ThemeButton>
+            <Link to="/dashboard">
+              <ThemeButton buttonSize="lg" buttonStyle="solid">
+                Entrar
+              </ThemeButton>
+            </Link>
           </div>
         </div>
         <div className="image-grid">

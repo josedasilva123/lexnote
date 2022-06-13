@@ -12,6 +12,7 @@ export const ThemeInput = styled.input`
 
     background: var(--Black2);
     border: 1px solid var(--White);
+    color: var(--White);
 
     &:focus,
     &:active{
