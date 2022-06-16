@@ -48,6 +48,13 @@ export const ThemeButton = styled.button`
           &:hover {
             filter: brightness(1.1);
           }
+          &:disabled{
+            cursor: not-allowed;
+            opacity: .5;
+            &:hover{
+              filter: unset;
+            }
+          }
         `;
       case "outline":
         return css`

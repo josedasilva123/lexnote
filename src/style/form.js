@@ -21,6 +21,27 @@ export const ThemeInput = styled.input`
     }
 `
 
+export const ThemeSelect = styled.select`
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 0 1rem;
+    height: 52px;
+
+    background: var(--Black2);
+    border: 1px solid var(--White);
+    color: var(--White);
+
+    &:focus,
+    &:active{
+        outline: none;
+        border-color: var(--Blue);
+    }
+`
+
 export const ThemeInputLabel = styled.label`
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
