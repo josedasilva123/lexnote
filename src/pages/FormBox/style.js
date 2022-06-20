@@ -30,6 +30,11 @@ export const StyledFormBox = styled.div`
           }
         }
       }
+      .error{
+        font-family: Montserrat;
+        margin-top: .4rem;
+        color: red;
+      }
     }
 
     @media (max-width: 420px){
