@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
-import FormBox from './pages/FormBox';
+import Register from './pages/Register';
 import Login from "./pages/Login";
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
       <Routes>
         <Route index element={<Login setLogin={setLogin} />} />
         <Route path="/dashboard" element={<Dashboard addNotes={addNotes} removeNotes={removeNotes} setLogin={setLogin} />} />
-        <Route path="/form" element={<FormBox />}/>
+        <Route path="/register" element={<Register />}/>
       </Routes>
       
     </div>
