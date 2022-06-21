@@ -9,10 +9,4 @@ export const StyledDashboardForm = styled.aside`
         align-items: flex-start;
         gap: 1rem;
     }
-    form{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
 `
