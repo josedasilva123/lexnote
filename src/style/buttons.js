@@ -70,3 +70,14 @@ export const ThemeButton = styled.button`
     }
   }}
 `;
+
+export const ThemeLink = styled.span`
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-decoration: underline;
+    font-weight: 700;
+    color: var(--Blue);
+    &:hover{
+      filter: brightness(1.2);
+    }
+`
