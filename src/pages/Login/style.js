@@ -1,36 +1,53 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledLogin = styled.section`
-    justify-content: center;
-    min-height: 100vh;
-    padding: 4rem 0;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 4rem 0;
 
-    & > div{
-        gap: 3rem;
-        @media (min-width: 1024px){
-            align-items: center;
-            flex-direction: row;
-        }
+  & > div {
+    gap: 3rem;
+    @media (min-width: 1024px) {
+      align-items: center;
+      flex-direction: row;
     }
+  }
 
-    .content{
-        gap: 3rem;
-    }
+  .content {
+    max-width: 400px;
+    gap: 3rem;
+    @media (max-width: 1024px){
+        display: flex;
+        justify-content: center;
+        max-width: unset;   
+    }    
+  }
 
-    .text{
-        gap: .8rem;
-    }
+  .formBox {
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    gap: 1rem;
 
-    .button-grid{
-        button{
-            width: 100%;
-            @media (min-width: 420px){
-                width: unset;
-            }
-        }
+    @media (max-width: 1024px){
+        max-width: 480px;   
     }
-    
-    .image-grid{
-        align-items: center;
+  }
+
+  .registerBox{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    p{
+        width: 100%;
+        text-align: center;
     }
-`
+  }
+
+  .image-grid {
+    align-items: center;
+  }
+`;
