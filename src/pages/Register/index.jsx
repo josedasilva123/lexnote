@@ -12,13 +12,12 @@ import { MdArrowBack } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 import { useForm, useInput } from "lx-react-form";
-
-
  
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [sucess, setSucess] = useState(false);
+
 
   const name = useInput({
     name: "name",
@@ -39,11 +38,11 @@ const Register = () => {
     same: password.value,
   });
 
-   // Função envio de formulário em submitCallback
+  // Função envio de formulário em submitCallback
   const form = useForm({
     formFields: [name, email, password, confirm],
     submitCallback: (formData) => {
-      console.log(formData);
+        console.log(formData);
     },
   });
 
