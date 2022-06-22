@@ -1,21 +1,18 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react'
+
 import { ThemeParagraph, ThemeTitle } from '../../../../style/typography'
+
 import { MdDelete } from 'react-icons/md';
+
 import { StyledNoteCard } from './style';
-import { useContext } from 'react';
-import { NotesContext } from '../../../../contexts/NotesContext';
 
-const NoteCard = ({ id, title, text, setError }) => {
-  const { notes, setNotes, noteDelete } = useContext(NotesContext);
 
+
+const NoteCard = ({ id, title, text }) => {
   function handleDelete(){
-    if(confirm("Deseja mesmo excluir essa nota?")){
-      noteDelete(id, setError, () => {
-        const newNotes = notes.filter(note => note._id !== id);
-        setNotes(newNotes);
-      })
-    }
+    console.log(id);
+    /* Haverá um handle delete */
   }
 
   return (

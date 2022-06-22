@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { ThemeButton } from "../../../style/buttons";
 import {
   ThemeAlert,
@@ -12,13 +12,10 @@ import { StyledDashboardForm } from "./styles";
 
 import { useInput, useForm } from "lx-react-form";
 
-import { NotesContext } from "../../../contexts/NotesContext";
-
 const DashboardForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [sucess, setSucess] = useState(false);
-  const { notes, setNotes, noteCreate } = useContext(NotesContext);
 
   const title = useInput({
     name: "title",
@@ -32,13 +29,7 @@ const DashboardForm = () => {
     clearFields: true,
     formFields: [title, text],
     submitCallback: (formData) => {
-      noteCreate(formData, setLoading, setError, (data) => {
-        setNotes([...notes, data.response]);
-        setSucess(true);
-        setTimeout(() => {
-          setSucess(false);
-        }, 3000)
-      })
+      console.log(formData);
     }
   })
 

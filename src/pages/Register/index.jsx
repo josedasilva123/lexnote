@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import { ThemeButton } from "../../style/buttons";
 import { ThemeAlert, ThemeForm, ThemeInput } from "../../style/form";
@@ -9,19 +9,16 @@ import { StyledFormBox } from "./style";
 
 import { MdArrowBack } from "react-icons/md";
 
-import { useForm, useInput } from "lx-react-form";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
-import { useNavigate } from "react-router-dom";
+
+import { useForm, useInput } from "lx-react-form";
+
+
  
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [sucess, setSucess] = useState(false);
-
-  const navigate = useNavigate();
-
-  const { userRegister } = useContext(UserContext);
 
   const name = useInput({
     name: "name",
@@ -42,16 +39,11 @@ const Register = () => {
     same: password.value,
   });
 
+   // Função envio de formulário em submitCallback
   const form = useForm({
     formFields: [name, email, password, confirm],
     submitCallback: (formData) => {
-      userRegister(formData, setLoading, setError, () => {
-        setSucess(true);
-        setTimeout(() => {
-          setSucess(false);
-          navigate('/');
-        }, 3000);
-      });
+      console.log(formData);
     },
   });
 

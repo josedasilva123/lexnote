@@ -1,17 +1,36 @@
 import React, { useState } from "react";
-import { useContext } from "react";
-import { NotesContext } from "../../../contexts/NotesContext";
+
 import { ThemeParagraph, ThemeTitle } from "../../../style/typography";
+
 import NoteCard from "./NoteCard";
+
 import { StyledNoteList } from "./style";
 
-const NoteList = ({ user }) => {
-  const { notes } = useContext(NotesContext);
+const NoteList = () => {
+  const notes = [
+      {
+        _id: 1,
+        title: "Nota de exemplo 1",
+        text: "Texto"
+      },
+      {
+        _id: 2,
+        title: "Nota de exemplo 2",
+        text: "Texto"
+      },
+      {
+        _id: 3,
+        title: "Nota de exemplo 3",
+        text: "Texto"
+      }
+  ]
+
   const [error, setError] = useState(false);
+
   return (
     <StyledNoteList>
       <ThemeTitle tag="h1" titleSize="title2">
-        Bem vindo(a) {user?.name}!
+        Bem vindo(a) José da Silva!
       </ThemeTitle>
       <ThemeParagraph>O que você deseja anotar?</ThemeParagraph>
       {notes?.length > 0 ? (

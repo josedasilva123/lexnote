@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -12,11 +12,10 @@ import { ThemeInput, ThemeForm, ThemeAlert } from "../../style/form";
 import { StyledLogin } from "./style";
 
 import { useInput, useForm } from "lx-react-form";
-import { UserContext } from "../../contexts/UserContext";
 
 
 const Login = () => {
-  const { userLogin } = useContext(UserContext);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -28,10 +27,11 @@ const Login = () => {
     name: "password",
   });
 
+  // Função envio de formulário em submitCallback
   const form = useForm({
     formFields: [email, password],
     submitCallback: (formData) => {
-      userLogin(formData , setLoading, setError);
+      console.log(formData);
     },
   });
 
