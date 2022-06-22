@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -7,14 +7,19 @@ import LoginImage from "../../assets/VectorLogin.svg";
 import { ThemeButton, ThemeLink } from "../../style/buttons";
 import { Container } from "../../style/global";
 import { ThemeLabel, ThemeParagraph, ThemeTitle } from "../../style/typography";
-import { ThemeInput, ThemeForm } from "../../style/form";
+import { ThemeInput, ThemeForm, ThemeAlert } from "../../style/form";
 
 import { StyledLogin } from "./style";
 
 import { useInput, useForm } from "lx-react-form";
+import { UserContext } from "../../contexts/UserContext";
 
 
 const Login = () => {
+  const { userLogin } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
   const email = useInput({
     name: "email",
   });
@@ -26,7 +31,7 @@ const Login = () => {
   const form = useForm({
     formFields: [email, password],
     submitCallback: (formData) => {
-      console.log(formData);
+      userLogin(formData , setLoading, setError);
     },
   });
 
@@ -68,9 +73,11 @@ const Login = () => {
                 )}
               </div>
 
+              {error && <ThemeAlert alertType="error">{error}</ThemeAlert>}    
+
               <div className="buttonGrid">
-                <ThemeButton type="submit" buttonSize="lg" buttonStyle="solid">
-                  Entrar
+                <ThemeButton disabled={loading} type="submit" buttonSize="lg" buttonStyle="solid">
+                  {loading ? "Entrando..." : "Entrar"}
                 </ThemeButton>
               </div>
             </ThemeForm>

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 
 import { ThemeButton } from "../../style/buttons";
-import { ThemeForm, ThemeInput, ThemeSelect } from "../../style/form";
+import { ThemeAlert, ThemeForm, ThemeInput } from "../../style/form";
 import { Container } from "../../style/global";
 import { ThemeLabel, ThemeTitle } from "../../style/typography";
 
@@ -9,12 +9,22 @@ import { StyledFormBox } from "./style";
 
 import { MdArrowBack } from "react-icons/md";
 
-import { useForm, useInput, useSelect } from "lx-react-form";
+import { useForm, useInput } from "lx-react-form";
 import { Link } from "react-router-dom";
-
+import { UserContext } from "../../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
+ 
 const Register = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [sucess, setSucess] = useState(false);
+
+  const navigate = useNavigate();
+
+  const { userRegister } = useContext(UserContext);
+
   const name = useInput({
-    name: "email",
+    name: "name",
   });
 
   const email = useInput({
@@ -35,9 +45,16 @@ const Register = () => {
   const form = useForm({
     formFields: [name, email, password, confirm],
     submitCallback: (formData) => {
-      console.log(formData);
+      userRegister(formData, setLoading, setError, () => {
+        setSucess(true);
+        setTimeout(() => {
+          setSucess(false);
+          navigate('/');
+        }, 3000);
+      });
     },
   });
+
   return (
     <Container>
       <StyledFormBox>
@@ -78,9 +95,12 @@ const Register = () => {
               {confirm.error && <p className="error">{confirm.error}</p>}
             </div>
 
+            {sucess && <ThemeAlert alertType="sucess">Cadastro efetuado com sucesso!</ThemeAlert>}
+            {error && <ThemeAlert alertType="error">{error}</ThemeAlert>}
+
             <div className="buttonGrid">
-              <ThemeButton buttonStyle="solid" buttonSize="lg" type="submit">
-                Enviar
+              <ThemeButton disabled={loading} buttonStyle="solid" buttonSize="lg" type="submit">
+                {loading ? 'Enviando...' : 'Enviar'}
               </ThemeButton>
             </div>
           </ThemeForm>

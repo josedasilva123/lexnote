@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { ThemeButton } from "../../../style/buttons";
 import {
+  ThemeAlert,
   ThemeForm,
   ThemeInput,
   ThemeInputLabel,
@@ -11,7 +12,14 @@ import { StyledDashboardForm } from "./styles";
 
 import { useInput, useForm } from "lx-react-form";
 
+import { NotesContext } from "../../../contexts/NotesContext";
+
 const DashboardForm = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [sucess, setSucess] = useState(false);
+  const { notes, setNotes, noteCreate } = useContext(NotesContext);
+
   const title = useInput({
     name: "title",
   });
@@ -21,13 +29,18 @@ const DashboardForm = () => {
   });
 
   const form = useForm({
+    clearFields: true,
     formFields: [title, text],
     submitCallback: (formData) => {
-      console.log(formData);
+      noteCreate(formData, setLoading, setError, (data) => {
+        setNotes([...notes, data.response]);
+        setSucess(true);
+        setTimeout(() => {
+          setSucess(false);
+        }, 3000)
+      })
     }
   })
-
-
 
   return (
     <StyledDashboardForm>
@@ -52,9 +65,14 @@ const DashboardForm = () => {
           <ThemeTextarea name="mensagem" {...text.inputProps}/>
           {text.error && <p className="error">{text.error}</p>}
         </div>
-        <ThemeButton buttonSize="lg" buttonStyle="solid">
-          Enviar
+
+        {sucess && <ThemeAlert alertType="sucess">Nota criada com sucesso!</ThemeAlert>}
+        {error && <ThemeAlert alertType="error">{error}</ThemeAlert>}
+
+        <ThemeButton disabled={loading} buttonSize="lg" buttonStyle="solid">
+          {loading ? 'Enviando...' : 'Enviar'}
         </ThemeButton>
+        
       </ThemeForm>
     </StyledDashboardForm>
   );

@@ -1,18 +1,31 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useContext } from "react";
 import Header from "../../components/Header";
+import { UserContext } from "../../contexts/UserContext";
 import { Container } from "../../style/global";
 import DashboardForm from "./DashboardForm";
 import NoteList from "./NoteList";
 import { StyledMain } from "./style";
 
-const Dashboard = ({ addNotes, setLogin }) => {
+import { useNavigate } from "react-router-dom";
+
+const Dashboard = () => {
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+     if(!user){
+      navigate('/')
+     }
+  }, [])
+
   return (
     <>
-      <Header setLogin={setLogin} />
+      <Header />
       <Container>
         <StyledMain>
           <DashboardForm />
-          <NoteList />
+          <NoteList user={user} />
         </StyledMain>
       </Container>
     </>

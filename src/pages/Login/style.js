@@ -14,16 +14,16 @@ export const StyledLogin = styled.section`
   }
 
   .content {
+    align-items: center;
     max-width: 400px;
     gap: 3rem;
     @media (max-width: 1024px){
         display: flex;
-        justify-content: center;
         max-width: unset;   
     }    
   }
 
-  .formBox {
+  .formBox {    
     padding: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
