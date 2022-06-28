@@ -22,7 +22,6 @@ const Register = () => {
   const [error, setError] = useState(false);
   const [sucess, setSucess] = useState(false);
 
-  //Importado userCreate do contexto UserContext
   const { userCreate } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -51,17 +50,14 @@ const Register = () => {
   const form = useForm({
     formFields: [name, email, password, confirm],
     submitCallback: (formData) => {
-      //User Create
         userCreate(formData, setLoading, setError, 
-          /* Função de callback recebendo response.data */ 
           (response) => {
-          setSucess(response.message); //Pegando mensagem
+          setSucess(response.message); 
           setTimeout(() => {
             setSucess(false);
             navigate('/');
           }, 3000)
         });
-        //console.log(formData);
     },
   });
 
