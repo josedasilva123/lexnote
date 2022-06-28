@@ -12,9 +12,12 @@ import { ThemeInput, ThemeForm, ThemeAlert } from "../../style/form";
 import { StyledLogin } from "./style";
 
 import { useInput, useForm } from "lx-react-form";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 
 const Login = () => {
+  const { userLogin } = useContext(UserContext); //função de login importada do contexto
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -31,7 +34,8 @@ const Login = () => {
   const form = useForm({
     formFields: [email, password],
     submitCallback: (formData) => {
-      console.log(formData);
+      userLogin(formData, setLoading, setError);
+      //console.log(formData);
     },
   });
 

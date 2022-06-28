@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Container } from "../../style/global";
 
@@ -8,18 +8,34 @@ import DashboardForm from "./DashboardForm";
 import NoteList from "./NoteList";
 
 import { StyledMain } from "./style";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 
 const Dashboard = () => {
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!user){
+      navigate('/');
+    }
+  }, [])
+  
   return (
     <>
-      <Header />
-      <Container>
-        <StyledMain>
-          <DashboardForm />
-          <NoteList />
-        </StyledMain>
-      </Container>
+      {user && (
+        <>
+        <Header />
+        <Container>
+          <StyledMain>
+            <DashboardForm />
+            <NoteList />
+          </StyledMain>
+        </Container>
+        </>
+      )}
     </>
   );
 };

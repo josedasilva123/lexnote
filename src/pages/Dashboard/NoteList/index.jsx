@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/UserContext";
 
 import { ThemeParagraph, ThemeTitle } from "../../../style/typography";
 
@@ -7,6 +9,8 @@ import NoteCard from "./NoteCard";
 import { StyledNoteList } from "./style";
 
 const NoteList = () => {
+  const { user } = useContext(UserContext); //usuário importado do contexto
+
   const notes = [
       {
         _id: 1,
@@ -30,7 +34,7 @@ const NoteList = () => {
   return (
     <StyledNoteList>
       <ThemeTitle tag="h1" titleSize="title2">
-        Bem vindo(a) José da Silva!
+        Bem vindo(a) {user?.name}
       </ThemeTitle>
       <ThemeParagraph>O que você deseja anotar?</ThemeParagraph>
       {notes?.length > 0 ? (
