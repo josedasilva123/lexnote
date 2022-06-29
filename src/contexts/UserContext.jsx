@@ -6,33 +6,31 @@ import { useNavigate } from "react-router";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null); //Criamos um estado global para armazenar user
+    const [user, setUser] = useState(null); 
 
-    const navigate = useNavigate(); //Use navigate (correspondente ao history.push na v5) instanciado
+    const navigate = useNavigate(); 
 
     useEffect(() => {
-        //Pega a token do localStorage (caso exista)
         const token = localStorage.getItem('@TOKEN');
 
         async function autoLogin(){
             try {
-                //Parse na token para converter para o formato adequado
+               
                 const parsedToken = JSON.parse(token);
-                //Requisição na rota de autologin
+               
                 const response = await api.post('/user/autologin', {}, {
                     headers: {
                         auth: parsedToken
                     }
                 })
 
-                setUser(response.data.user); //Caso a requisição der certo set o estado com usuário
-                navigate('/dashboard'); //Redireciona para dashboard
+                setUser(response.data.user); 
+                navigate('/dashboard'); 
             } catch (error) {
-                localStorage.removeItem('@TOKEN'); //Caso houver erro, limpa a token
+                localStorage.removeItem('@TOKEN'); 
             }
         }
 
-        //Caso a token esteja definida, executa a função autoLogin()
         if(token){
             autoLogin();
         }        
@@ -59,22 +57,16 @@ export const UserProvider = ({ children }) => {
         }
     }
 
-    //UserLogin
     async function userLogin(formData, setLoading, setError, callback){
         try {
-           setLoading(true); //Inicia carregamento
-           setError(false); //Reseta erros caso existam
-
-           //Requisição de login conforme documentação
+           setLoading(true); 
+           setError(false);            
            const response = await api.post('/user/login', formData);
-
-           //Caso de certo, set o estado com o usuário
+       
            setUser(response.data.user); 
-
-           //Armazena a token gerada no localStorage
+          
            localStorage.setItem("@TOKEN", JSON.stringify(response.data.token)); 
 
-           //Redireciona para o dashboard 
            navigate('/dashboard');
 
            if(callback){

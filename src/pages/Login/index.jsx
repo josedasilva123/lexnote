@@ -17,7 +17,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 
 const Login = () => {
-  const { userLogin } = useContext(UserContext); //função de login importada do contexto
+  const { userLogin } = useContext(UserContext); 
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
