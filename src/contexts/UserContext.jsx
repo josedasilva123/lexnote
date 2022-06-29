@@ -14,8 +14,7 @@ export const UserProvider = ({ children }) => {
         const token = localStorage.getItem('@TOKEN');
 
         async function autoLogin(){
-            try {
-               
+            try {               
                 const parsedToken = JSON.parse(token);
                
                 const response = await api.post('/user/autologin', {}, {
@@ -83,8 +82,20 @@ export const UserProvider = ({ children }) => {
         }
     }
 
+    //Função de logout resentando o estado e localstorage
+    function userLogout(callback){
+        setUser(null);
+        localStorage.removeItem("@TOKEN");
+        navigate('/');
+
+        //Callback que será utilizado para lidar com o problema de hierarquia de providers
+        if(callback){
+            callback();
+        }
+    }
+
     return(
-        <UserContext.Provider value={{ user, userCreate, userLogin }}>
+        <UserContext.Provider value={{ user, userCreate, userLogin, userLogout }}>
             {children}
         </UserContext.Provider>
     )
