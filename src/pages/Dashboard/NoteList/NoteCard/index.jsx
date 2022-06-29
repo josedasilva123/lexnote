@@ -6,12 +6,17 @@ import { ThemeParagraph, ThemeTitle } from '../../../../style/typography'
 import { MdDelete } from 'react-icons/md';
 
 import { StyledNoteCard } from './style';
+import { useContext } from 'react';
+import { NotesContext } from '../../../../contexts/NotesContext';
 
 
 
-const NoteCard = ({ id, title, text }) => {
+const NoteCard = ({ id, title, text, setError }) => {
+  const { noteDelete } = useContext(NotesContext);
   function handleDelete(){
-    console.log(id);
+    if(confirm("Você deseja mesmo excluir esta nota?")){
+      noteDelete(id, setError);
+    }    
     /* Haverá um handle delete */
   }
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useContext } from "react";
+import { NotesContext } from "../../../contexts/NotesContext";
 import { UserContext } from "../../../contexts/UserContext";
 
 import { ThemeParagraph, ThemeTitle } from "../../../style/typography";
@@ -9,25 +10,9 @@ import NoteCard from "./NoteCard";
 import { StyledNoteList } from "./style";
 
 const NoteList = () => {
-  const { user } = useContext(UserContext); //usuário importado do contexto
-
-  const notes = [
-      {
-        _id: 1,
-        title: "Nota de exemplo 1",
-        text: "Texto"
-      },
-      {
-        _id: 2,
-        title: "Nota de exemplo 2",
-        text: "Texto"
-      },
-      {
-        _id: 3,
-        title: "Nota de exemplo 3",
-        text: "Texto"
-      }
-  ]
+  const { user } = useContext(UserContext); 
+  const { notes } = useContext(NotesContext);
+  
 
   const [error, setError] = useState(false);
 

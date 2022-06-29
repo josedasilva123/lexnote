@@ -11,8 +11,12 @@ import { ThemeParagraph, ThemeTitle } from "../../../style/typography";
 import { StyledDashboardForm } from "./styles";
 
 import { useInput, useForm } from "lx-react-form";
+import { useContext } from "react";
+import { NotesContext } from "../../../contexts/NotesContext";
 
 const DashboardForm = () => {
+  const { noteCreate } = useContext(NotesContext);
+  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [sucess, setSucess] = useState(false);
@@ -29,7 +33,13 @@ const DashboardForm = () => {
     clearFields: true,
     formFields: [title, text],
     submitCallback: (formData) => {
-      console.log(formData);
+      noteCreate(formData, setLoading, setError, (response) => {
+        setSucess(response.message);
+        setTimeout(() => {
+          setSucess(false);
+        }, 3000);
+      })
+      //console.log(formData);
     }
   })
 
