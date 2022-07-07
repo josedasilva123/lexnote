@@ -12,7 +12,7 @@ export const NotesProvider = ({ children }) => {
 
   //Carregamento de notas
   useEffect(() => {
-    async function notesGet(setNotes){
+    async function notesGet(){
         try {      
             //Recupera a token do localStorage e da JSON.parse 
             const token = JSON.parse(localStorage.getItem('@TOKEN'));

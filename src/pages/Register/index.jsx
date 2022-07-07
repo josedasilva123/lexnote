@@ -38,12 +38,25 @@ const Register = () => {
 
   const password = useInput({
     name: "password",
-    validation: "senha",
+    customValidations: [
+      {
+        regex: /^(?=.*?[a-z])/,
+        error: "deve conter pelo menos 01 letra minúscula (a-z)",
+      },
+      {
+        regex: /^(?=.*?[A-Z])/,
+        error: "deve conter pelo menos 01 letra maúscula (A-Z)",
+      },
+      {
+        regex: /^(?=.*?[0-9])/,
+        error: "deve conter pelo menos 01 numero (0-9)",
+      }
+    ],
   });
 
   const confirm = useInput({
     name: "confirm",
-    same: password.value,
+    
   });
 
   // Função envio de formulário em submitCallback
