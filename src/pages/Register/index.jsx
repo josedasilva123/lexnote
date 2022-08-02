@@ -12,17 +12,13 @@ import { MdArrowBack } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 import { useForm, useInput } from "lx-react-form";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
 
 import { useNavigate } from "react-router-dom";
  
-const Register = () => {
+const Register = ({ userCreate }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [sucess, setSucess] = useState(false);
-
-  const { userCreate } = useContext(UserContext);
+  const [sucess, setSucess] = useState(false);  
 
   const navigate = useNavigate();
 

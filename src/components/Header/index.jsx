@@ -8,8 +8,7 @@ import { ThemeButton } from "../../style/buttons";
 import { Container } from "../../style/global";
 import { StyledHeader } from "./style";
 
-const Header = () => {
-  const { userLogout } = useContext(UserContext);
+const Header = ({userLogout}) => {
   const { setNotes } = useContext(NotesContext);
 
   function handleLogout(){

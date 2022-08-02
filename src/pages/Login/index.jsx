@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { Link } from "react-router-dom";
+
+import { UserContext } from "../../contexts/UserContext";
 
 import LoginImage from "../../assets/VectorLogin.svg";
 
@@ -12,18 +14,15 @@ import { ThemeInput, ThemeForm, ThemeAlert } from "../../style/form";
 import { StyledLogin } from "./style";
 
 import { useInput, useForm } from "lx-react-form";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
 
 
-const Login = () => {
-  const { userLogin } = useContext(UserContext); 
-
+const Login = ({ userLogin }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const email = useInput({
     name: "email",
+    validation: "email",
   });
 
   const password = useInput({
@@ -50,7 +49,9 @@ const Login = () => {
 
             <ThemeForm onSubmit={form.handleSubmit}>
               <div className="inputBox">
-                <ThemeLabel color="--White" htmlFor={email.inputProps.name}>E-mail</ThemeLabel>
+                <ThemeLabel color="--White" htmlFor={email.inputProps.name}>
+                  E-mail
+                </ThemeLabel>
                 <ThemeInput
                   placeholder="E-mail"
                   type="email"
@@ -64,10 +65,12 @@ const Login = () => {
               </div>
 
               <div className="inputBox">
-                <ThemeLabel color="--White" htmlFor={password.inputProps.name}>Senha</ThemeLabel>
+                <ThemeLabel color="--White" htmlFor={password.inputProps.name}>
+                  Senha
+                </ThemeLabel>
                 <ThemeInput
                   placeholder="Senha"
-                  type="password"
+                  type="text"
                   {...password.inputProps}
                 />
                 {password.error && (
@@ -77,10 +80,15 @@ const Login = () => {
                 )}
               </div>
 
-              {error && <ThemeAlert alertType="error">{error}</ThemeAlert>}    
+              {error && <ThemeAlert alertType="error">{error}</ThemeAlert>}
 
               <div className="buttonGrid">
-                <ThemeButton disabled={loading} type="submit" buttonSize="lg" buttonStyle="solid">
+                <ThemeButton
+                  disabled={loading}
+                  type="submit"
+                  buttonSize="lg"
+                  buttonStyle="solid"
+                >
                   {loading ? "Entrando..." : "Entrar"}
                 </ThemeButton>
               </div>

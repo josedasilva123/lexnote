@@ -13,7 +13,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 
 
-const Dashboard = () => {
+const Dashboard = ({ userLogout}) => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const Dashboard = () => {
     <>
       {user && (
         <>
-        <Header />
+        <Header userLogout={userLogout} />
         <Container>
           <StyledMain>
             <DashboardForm />
