@@ -8,24 +8,11 @@ import DashboardForm from "./DashboardForm";
 import NoteList from "./NoteList";
 
 import { StyledMain } from "./style";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
-import { useNavigate } from "react-router-dom";
 
 
-const Dashboard = () => {
-  const { user } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if(!user){
-      navigate('/');
-    }
-  }, [])
-  
+const Dashboard = () => {  
   return (
-    <>
-      {user && (
+    <>      
         <>
         <Header />
         <Container>
@@ -35,7 +22,6 @@ const Dashboard = () => {
           </StyledMain>
         </Container>
         </>
-      )}
     </>
   );
 };
