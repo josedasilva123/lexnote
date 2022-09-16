@@ -61,7 +61,7 @@ export const UserProvider = ({ children }) => {
            setLoading(true); 
            setError(false);            
            const response = await api.post('/user/login', formData);
-       
+          //Sucesso         
            setUser(response.data.user); 
           
            localStorage.setItem("@TOKEN", JSON.stringify(response.data.token)); 

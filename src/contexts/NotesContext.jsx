@@ -46,6 +46,7 @@ export const NotesProvider = ({ children }) => {
           auth: token,
         },
       });
+
       setNotes([...notes, response.data.response]); //set de estado adicionando a nova nota
 
       //Função de callback caso exista

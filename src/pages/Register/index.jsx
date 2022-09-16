@@ -24,7 +24,7 @@ const Register = () => {
 
   const { userCreate } = useContext(UserContext);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
 
   const name = useInput({
@@ -55,8 +55,7 @@ const Register = () => {
   });
 
   const confirm = useInput({
-    name: "confirm",
-    
+    name: "confirm",    
   });
 
   // Função envio de formulário em submitCallback
