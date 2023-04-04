@@ -61,7 +61,7 @@ export const UserProvider = ({ children }) => {
            setLoading(true); 
            setError(false);            
            const response = await api.post('/user/login', formData);
-          //Sucesso         
+        
            setUser(response.data.user); 
           
            localStorage.setItem("@TOKEN", JSON.stringify(response.data.token)); 
@@ -82,13 +82,11 @@ export const UserProvider = ({ children }) => {
         }
     }
 
-    //Função de logout resentando o estado e localstorage
     function userLogout(callback){
         setUser(null);
         localStorage.removeItem("@TOKEN");
         navigate('/');
 
-        //Callback que será utilizado para lidar com o problema de hierarquia de providers
         if(callback){
             callback();
         }
